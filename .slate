@@ -1,0 +1,170 @@
+# GLOBAL CONFIGURATIONS
+# -------------------------------------------------------------------
+# See https://github.com/jigish/slate/wiki/Global-Configs
+
+config defaultToCurrentScreen true
+config secondsBeforeRepeat 0.4
+config secondsBetweenRepeat 0.1
+config keyboardLayout "qwerty"
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config windowHintsShowIcons true
+config windowHintsSpread true
+config windowHintsIgnoreHiddenWindows false
+
+
+# HYPER KEY
+# -------------------------------------------------------------------
+# The "hyper" key is a shortcut for CTRL + ALT + CMD
+
+alias hyper ctrl;alt;cmd
+
+
+# MONITOR ALIASES
+# -------------------------------------------------------------------
+
+alias monitor-macbook 1440x900
+
+
+# APPLICATION ALIASES AND BINDINGS
+# -------------------------------------------------------------------
+
+alias editor 'Sublime Text'
+alias terminal 'Terminal'
+alias browser 'Google Chrome'
+
+bind e:${hyper} focus ${editor}
+bind t:${hyper} focus ${terminal}
+bind b:${hyper} focus ${browser}
+# bind v:${hyper} focus 'nvALT'
+
+
+# SLATE FEATURES
+# -------------------------------------------------------------------
+
+# Show quick key overlays for each window
+bind h:${hyper} hint ASDFHJKLQWERTYUIOPCVBNG
+
+# Show a positioning grid for each monitor
+bind g:${hyper} grid padding:5 0:6,4
+
+# Better application switcher
+# bind tab:cmd switch
+
+# Reload Slate configuration file
+bind s:${hyper} relaunch
+
+
+# GENERAL POSITION ALIASES AND BINDINGS
+# -------------------------------------------------------------------
+# These positions are not tied to any screen. Each position gets an
+# alias and then a keybinding. The keybindings are all mapped to the
+# numberpad, with each row grouping a denominator.
+
+# Keypad 5 = fullscreen
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+bind pad5:${hyper} ${full}
+bind space:${hyper} ${full}
+
+# Keypad row 13 = halves
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+bind pad1:${hyper} ${lefthalf}
+bind left:${hyper} ${lefthalf}
+
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+bind pad3:${hyper} ${righthalf}
+bind right:${hyper} ${righthalf}
+
+# Keypad row 46 = thirds
+alias leftthird move screenOriginX;screenOriginY screenSizeX/3;screenSizeY
+bind pad4:${hyper} ${leftthird}
+bind 4:${hyper} ${leftthird}
+
+alias righttwothirds move screenOriginX+screenSizeX/3;screenOriginY 2*screenSizeX/3;screenSizeY
+bind pad6:${hyper} ${righttwothirds}
+bind 6:${hyper} ${righttwothirds}
+
+# Keypad row 79 = eighths
+alias leftfifth move screenOriginX;screenOriginY screenSizeX/5;screenSizeY
+bind pad7:${hyper} ${leftfifth}
+bind 7:${hyper} ${leftfifth}
+
+alias rightfourfifths move (screenOriginX+screenSizeX/5)+14;screenOriginY (4*screenSizeX/5)-14;screenSizeY
+bind pad9:${hyper} ${rightfourfifths}
+bind 9:${hyper} ${rightfourfifths}
+
+# Keypad column 28 = top and bottom halves
+alias tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+bind pad8:${hyper} ${tophalf}
+bind up:${hyper} ${tophalf}
+
+alias bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2
+bind pad2:${hyper} ${bottomhalf}
+bind down:${hyper} ${bottomhalf}
+
+# Quarters
+alias topleftquarter move screenOriginX;screenOriginY screenSizeX/2;screenSizeY/2
+bind [:${hyper} ${topleftquarter}
+
+alias toprightquarter move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY/2
+bind ]:${hyper} ${toprightquarter}
+
+# alias bottomleftquarter move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX/2;screenSizeY/2
+# bind [:${hyper} ${bottomleftquarter}
+
+# alias bottomrightquarter move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2 screenSizeX/2;screenSizeY/2
+# bind ]:${hyper} ${bottomrightquarter}
+
+
+# MONITOR-BASED POSITION ALIASES
+# -------------------------------------------------------------------
+# These aliases are move windows to specific positions on a specific
+# monitor.
+
+# Laptop monitor
+alias macbook-full move screenOriginX;screenOriginY screenSizeX;screenSizeY ${monitor-macbook}
+alias macbook-lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY ${monitor-macbook}
+alias macbook-righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY ${monitor-macbook}
+alias macbook-leftthird move screenOriginX;screenOriginY screenSizeX/3;screenSizeY ${monitor-macbook}
+alias macbook-righttwothirds move screenOriginX+screenSizeX/3;screenOriginY 2*screenSizeX/3;screenSizeY ${monitor-macbook}
+alias macbook-leftfifth move screenOriginX;screenOriginY screenSizeX/5;screenSizeY ${monitor-macbook}
+alias macbook-rightfourfifths move (screenOriginX+screenSizeX/5)+45;screenOriginY (4*screenSizeX/5)-45;screenSizeY ${monitor-macbook}
+alias macbook-tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2 ${monitor-macbook}
+alias macbook-bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2 ${monitor-macbook}
+
+
+# BINDINGS
+# -------------------------------------------------------------------
+# Mostly taken from
+# https://github.com/jigish/slate/blob/master/Slate/default.slate
+
+# Focus
+bind right:cmd;ctrl    focus right
+bind left:cmd;ctrl     focus left
+bind up:cmd;ctrl       focus behind
+bind down:cmd;ctrl     focus behind
+# bind ]:alt;shift       focus right
+# bind [:alt;shift       focus left
+# bind =:alt;shift       focus behind
+
+# Throw
+# bind ]:${hyper} throw right resize full
+# bind [:${hyper}  throw left resize full
+
+# Resize
+bind right:shift;alt;cmd       resize +5% +0
+bind left:shift;alt;cmd        resize -5% +0
+bind up:shift;alt;cmd          resize +0   -5%
+bind down:shift;alt;cmd        resize +0   +5%
+
+# Nudge
+bind right:${hyper};shift nudge +10% +0
+bind left:${hyper};shift  nudge -10% +0
+bind up:${hyper};shift    nudge +0   -10%
+bind down:${hyper};shift  nudge +0   +10%
+
+# Push
+# bind right:shift;cmd  push right bar-resize:screenSizeX/3
+# bind left:shift;cmd   push left  bar-resize:screenSizeX/3
+# bind up:shift;cmd     push up    bar-resize:screenSizeY/2
+# bind down:shift;cmd   push down  bar-resize:screenSizeY/2
