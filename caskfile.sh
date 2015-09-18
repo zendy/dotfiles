@@ -10,6 +10,7 @@ brew cask install caffeine 2> /dev/null
 brew cask install dropbox 2> /dev/null
 brew cask install fantastical 2> /dev/null
 brew cask install filezilla 2> /dev/null
+brew cask install firefox 2> /dev/null
 brew cask install flux 2> /dev/null
 brew cask install fontprep 2> /dev/null
 brew cask install google-chrome 2> /dev/null
